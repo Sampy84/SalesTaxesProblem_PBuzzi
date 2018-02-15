@@ -16,11 +16,11 @@ public class SalesTaxesProblem {
     public static void main(String[] args) {
 
     /* Create the invoices for the 3 above shopping lists. */
-        for (int i=1; i<=3; i++) {
+        for (int orderNumber=1; orderNumber<=3; orderNumber++) {
         
-            String shoppingListName="shoppingList"+Integer.toString(i)+".txt";
-            String invoiceName="Invoice_"+"shoppingList"+Integer.toString(i)+".txt";
-            PurchasingManager purchisingManager=new PurchasingManager(shoppingListName, invoiceName, i);
+            String shoppingListName="shoppingList"+Integer.toString(orderNumber)+".txt";
+            String invoiceName="Invoice_"+"shoppingList"+Integer.toString(orderNumber)+".txt";
+            PurchasingManager purchisingManager=new PurchasingManager(shoppingListName, invoiceName, orderNumber);
             purchisingManager.checkShoppinglist();
             
         }

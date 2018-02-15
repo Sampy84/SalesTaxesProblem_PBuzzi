@@ -21,14 +21,14 @@ public class PurchasingManager {
         
     private BufferedReader bufReader;
     private BufferedWriter bufWriter;
-    private final int numOrder;
+    private final int orderNumber;
     private final ArrayList<AbstractArticle> soldArticles;
     
     
     
-    public PurchasingManager(String shoppingListName, String invoiceName, int numOrder) {
+    public PurchasingManager(String shoppingListName, String invoiceName, int orderNumber) {
     
-        this.numOrder=numOrder;
+        this.orderNumber=orderNumber;
         this.soldArticles=new ArrayList<>();
         
         try {
@@ -83,10 +83,10 @@ public class PurchasingManager {
     
                 for (int i=1; i<orderedArtDesc.length-2; i++) {
                     
-                    if(orderedArtDesc[i].equals("imported")) 
+                    if(orderedArtDesc[i].equalsIgnoreCase("imported")) // Check if it's an Imported article.
                         isImported=true;
                     
-                    if(orderedArtDesc[i].equalsIgnoreCase("book")||orderedArtDesc[i].equalsIgnoreCase("chocolate") || orderedArtDesc[i].equalsIgnoreCase("chocolates") || orderedArtDesc[i].equalsIgnoreCase("pills")) // Search for exempt keyword.
+                    if(orderedArtDesc[i].equalsIgnoreCase("book")||orderedArtDesc[i].equalsIgnoreCase("chocolate") || orderedArtDesc[i].equalsIgnoreCase("chocolates") || orderedArtDesc[i].equalsIgnoreCase("pills")) // Check if it's an Exempt article.
                         isExempt=true;
                     
                 } // A single line of the shopping list has been analyzed.
@@ -153,8 +153,8 @@ public class PurchasingManager {
         BigDecimal totalShoppingSale=new BigDecimal(BigInteger.ZERO);
         
         System.out.println();
-        System.out.println("Output "+Integer.toString(numOrder)+":");
-        writeInvoice("Output "+Integer.toString(numOrder)+":");
+        System.out.println("Output "+Integer.toString(orderNumber)+":");
+        writeInvoice("Output "+Integer.toString(orderNumber)+":");
         
         for (AbstractArticle art:soldArticles){
             
